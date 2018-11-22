@@ -1,0 +1,11 @@
+#!/bin/bash
+
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
+alias show-hidden='defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder'
+alias hide-hidden='defaults write com.apple.finder AppleShowAllFiles -boolean false ; killall Finder'
+alias flushdns='sudo discoveryutil udnsflushcaches'
+alias serve='python -m SimpleHTTPServer 8080'
+alias ls='ls -lah'
+alias dc='docker-compose'
+alias cleanup_volumes='docker volume rm $(docker volume ls -f dangling=true -q)'
+alias https='http --default-scheme https'

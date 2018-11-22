@@ -1,16 +1,5 @@
 #!/bin/bash
 
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
-
-alias show-hidden='defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder'
-alias hide-hidden='defaults write com.apple.finder AppleShowAllFiles -boolean false ; killall Finder'
-
-alias flushdns='sudo discoveryutil udnsflushcaches'
-
-alias serve='python -m SimpleHTTPServer 8080'
-
-alias ls='ls -lah'
-
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 export HISTCONTROL=ignoreboth
@@ -19,16 +8,12 @@ export HISTTIMEFORMAT='%F %T '
 
 export PROMPT_COMMAND='history -a'
 
-alias dc='docker-compose'
-alias cleanup_volumes='docker volume rm $(docker volume ls -f dangling=true -q)'
-
-alias https='http --default-scheme https'
-
 export PATH="~/.dotfiles/bin:$PATH"
 export PATH="~/.local/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
 source ./compiler_flags
+source ./alias
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
