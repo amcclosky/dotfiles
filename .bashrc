@@ -15,7 +15,6 @@ export PATH="~/.local/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
 source ${DOTROOT}/.compiler_flags
-source ${DOTROOT}/.alias
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -34,3 +33,5 @@ if [ -f ${DOTROOT}/bin/fancy_prompt.sh ]; then
 fi
 
 eval "$(direnv hook bash)"
+
+source ${DOTROOT}/.alias
