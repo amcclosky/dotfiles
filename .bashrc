@@ -28,13 +28,7 @@ export PATH="~/.dotfiles/bin:$PATH"
 export PATH="~/.local/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
-# export LDFLAGS="-L/usr/local/opt/openssl/lib"
-# export CPPFLAGS="-I/usr/local/opt/openssl/include"
-
-# export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
-
-# export LDFLAGS="-L/usr/local/opt/readline/lib"
-# export CPPFLAGS="-I/usr/local/opt/readline/include"
+source ./compiler_flags
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
