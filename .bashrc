@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DOTROOT="${HOME}/.dotfiles"
+
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 export HISTCONTROL=ignoreboth
@@ -8,12 +10,12 @@ export HISTTIMEFORMAT='%F %T '
 
 export PROMPT_COMMAND='history -a'
 
-export PATH="~/.dotfiles/bin:$PATH"
+export PATH="${DOTROOT}/bin:$PATH"
 export PATH="~/.local/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
-source ./compiler_flags
-source ./alias
+source ${DOTROOT}/.compiler_flags
+source ${DOTROOT}/.alias
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -27,8 +29,8 @@ if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
   . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
 
-if [ -f ~/.dotfiles/bin/fancy_prompt.sh ]; then 
-    source ~/.dotfiles/bin/fancy_prompt.sh
+if [ -f ${DOTROOT}/bin/fancy_prompt.sh ]; then 
+    source ${DOTROOT}/bin/fancy_prompt.sh
 fi
 
 eval "$(direnv hook bash)"
