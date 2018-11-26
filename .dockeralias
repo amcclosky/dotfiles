@@ -1,0 +1,82 @@
+#!/bin/bash
+
+NAME_HASH=$(openssl rand -hex 6)
+
+PROJECT_DIR=/Users/anthony/projects/opcity
+
+function create-volume {
+
+    local volume_name=$1
+    local volume_path=$2
+
+    local volume_id=$(\
+        docker volume create \
+            --driver local \
+            --name op-${volume_name}-${NAME_HASH} \
+            -o type=none \
+            -o device=${volume_path} \
+            -o o=bind)
+    
+    echo ${volume_id}
+    return 0
+}
+
+op-fab(){
+	docker run \
+        --name op-fab-${NAME_HASH} \
+        --rm \
+        -v ${PROJECT_DIR}:/opt/opcity \
+        -v ${HOME}/.aws/:/home/opcity/.aws \
+        -v ${HOME}/.ssh/:/home/opcity/.ssh \
+        -v /var/run/docker.sock:/var/run/docker.sock \
+        --group-add $(stat -f %g /var/run/docker.sock) \
+        opcity-tools:1-dev fab $@
+}
+
+op-docker(){
+	docker run \
+        --name op-docker-${NAME_HASH} \
+        --rm \
+        -v ${PROJECT_DIR}:/opt/opcity \
+        -v ${HOME}/.aws/:/home/opcity/.aws \
+        -v ${HOME}/.ssh/:/home/opcity/.ssh \
+        -v /var/run/docker.sock:/var/run/docker.sock \
+        --group-add $(stat -f %g /var/run/docker.sock) \
+        opcity-tools:1-dev docker $@
+}
+
+op-dc(){
+	docker run \
+        --name op-dc-${NAME_HASH} \
+        --rm \
+        -v ${PROJECT_DIR}:/opt/opcity \
+        -v ${HOME}/.aws/:/home/opcity/.aws \
+        -v ${HOME}/.ssh/:/home/opcity/.ssh \
+        -v /var/run/docker.sock:/var/run/docker.sock \
+        --group-add $(stat -f %g /var/run/docker.sock) \
+        opcity-tools:1-dev docker-compose $@
+}
+
+function op-run {
+
+    local op_volume=$(create-volume project ${PROJECT_DIR})
+    local aws_volume=$(create-volume aws ${HOME}/.aws/)
+    local ssh_volume=$(create-volume ssh ${HOME}/.ssh/)
+
+    
+    local op_server=$(create-volume server ${PROJECT_DIR}/server)
+
+	docker run \
+        --name op-run-${NAME_HASH} \
+        --rm \
+        -it \
+        -v ${op_volume}:/opt/opcity \
+        -v ${aws_volume}:/home/opcity/.aws \
+        -v ${ssh_volume}:/home/opcity/.ssh \
+        -v /var/run/docker.sock:/var/run/docker.sock \
+        -e OP_SERVER=${op_server} \
+        -e OP_SSH=${ssh_volume} \
+        -e OP_AWS=${aws_volume} \
+        --group-add $(stat -f %g /var/run/docker.sock) \
+        opcity-tools:1-dev bash $@
+}

@@ -35,3 +35,4 @@ fi
 eval "$(direnv hook bash)"
 
 source ${DOTROOT}/.alias
+source ${DOTROOT}/.dockeralias
