@@ -28,8 +28,13 @@ if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
   . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
 
-if [ -f ${DOTROOT}/bin/fancy_prompt.sh ]; then 
+if [ -f ${DOTROOT}/bin/fancy_prompt.sh ]; then
     source ${DOTROOT}/bin/fancy_prompt.sh
+fi
+
+if command -v nvm 1>/dev/null 2>&1; then
+  export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
 fi
 
 eval "$(direnv hook bash)"
