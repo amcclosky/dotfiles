@@ -2,6 +2,9 @@
 
 DOTROOT="${HOME}/.dotfiles"
 
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 export HISTCONTROL=ignoreboth
@@ -13,6 +16,7 @@ export PROMPT_COMMAND='history -a'
 export PATH="${DOTROOT}/bin:$PATH"
 export PATH="~/.local/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="~/.poetry/bin:$PATH"
 
 source ${DOTROOT}/.compiler_flags
 
