@@ -14,9 +14,7 @@ export HISTTIMEFORMAT='%F %T '
 export PROMPT_COMMAND='history -a'
 
 export PATH="${DOTROOT}/bin:$PATH"
-export PATH="~/.local/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="~/.poetry/bin:$PATH"
 
 source ${DOTROOT}/.compiler_flags
 
@@ -27,6 +25,9 @@ fi
 if command -v pyenv virtualenv 1>/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
+
+export PATH="~/.poetry/bin:$PATH"
+export PATH="~/.local/bin:$PATH"
 
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
   . `brew --prefix`/etc/bash_completion.d/git-completion.bash
