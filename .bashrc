@@ -13,6 +13,8 @@ export HISTTIMEFORMAT='%F %T '
 
 export PROMPT_COMMAND='history -a'
 
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 export PATH="${DOTROOT}/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
