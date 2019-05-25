@@ -4,18 +4,18 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 alias show-hidden='defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder'
 alias hide-hidden='defaults write com.apple.finder AppleShowAllFiles -boolean false ; killall Finder'
 alias flushdns='sudo discoveryutil udnsflushcaches'
+
 alias serve='python -m http.server 8080'
+
 alias ls='ls -lah'
+
 alias dc='docker-compose'
 alias cleanup_volumes='docker volume rm $(docker volume ls -f dangling=true -q)'
 alias https='http --default-scheme https'
 alias sourcebrc='source ~/.bashrc'
-<<<<<<< Updated upstream
 
 alias op-aws='aws --profile=opcity-dev-developer'
 alias op-s3='aws --profile=opcity-dev-developer s3'
 
 alias op-aws-prod='aws --profile=opcity-prod-developer'
 alias op-s3-prod='aws --profile=opcity-prod-developer s3'
-=======
->>>>>>> Stashed changes
