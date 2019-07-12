@@ -15,6 +15,9 @@ export PROMPT_COMMAND='history -a'
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 export PATH="${DOTROOT}/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
