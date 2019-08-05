@@ -32,7 +32,7 @@ if command -v pyenv virtualenv 1> /dev/null 2>&1; then
 fi
 
 export PATH="~/.poetry/bin:$PATH"
-export PATH="~/.local/bin:$PATH"
+export PATH="~/.local/bin:~/bin:$PATH"
 
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
   . `brew --prefix`/etc/bash_completion.d/git-completion.bash
