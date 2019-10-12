@@ -6,12 +6,11 @@ cask "google-chrome", force: true
 cask "docker"
 cask "visual-studio-code"
 cask "chromedriver"
-
-brew "ctags"
+cask "sublime-text"
 
 brew "mas"
 mas "Pixelmator", id: 407963104
-mas "Giphy", id: 668208984
+
 
 brew "openssl"
 brew "readline"
