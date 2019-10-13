@@ -7,7 +7,7 @@ alias flushdns='sudo discoveryutil udnsflushcaches'
 
 alias serve='python -m http.server 8080'
 
-alias ls='ls -lah'
+alias ls='ls -lahG'
 
 alias dc='docker-compose'
 alias dcl='dc logs --tail=1000 -f'

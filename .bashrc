@@ -1,4 +1,6 @@
 #!/bin/bash
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:$PATH
 
 DOTROOT="${HOME}/.dotfiles"
 
