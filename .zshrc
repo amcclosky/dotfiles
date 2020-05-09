@@ -45,10 +45,15 @@ git_prompt() {
  [[ -n $branch ]] && echo "%B%F{240}on%f%b %B%F{141}$branch%f%b"
 }
 
-# PROMPT="\[${BOLD}${MAGENTA}\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
-# PROMPT='%m in %f %(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
 set_prompt () {
   PROMPT="%B%F{red}%m%f%b %B%F{240}in%f%b %B%F{190}%~%f%b $(git_prompt) $prompt_newline%(!.#.$) "
 }
 
 precmd_functions+=( set_prompt )
+
+PYTHON_VERSION=3.7.7
+export PATH="${HOME}/.local/bin:${HOME}/.pyenv/versions/${PYTHON_VERSION}/bin:${PATH}"
+
+export NVM_DIR="${HOME}/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
