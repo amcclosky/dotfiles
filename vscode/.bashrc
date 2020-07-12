@@ -22,5 +22,4 @@ if [ -f ${DOTROOT}/bin/fancy_prompt.sh ]; then
     source ${DOTROOT}/bin/fancy_prompt.sh
 fi
 
-source ${DOTROOT}/.alias
-source ${DOTROOT}/.dockeralias
+source ${DOTROOT}/vscode/.alias
