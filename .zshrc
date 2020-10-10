@@ -7,7 +7,7 @@ setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
-setopt HIST_EXPIRE_DUPS_FIRST 
+setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
@@ -15,7 +15,10 @@ setopt HIST_VERIFY
 setopt HIST_NO_STORE
 
 setopt CORRECT
+unsetopt CORRECT
+
 setopt CORRECT_ALL
+unsetopt CORRECT_ALL
 
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 HISTORY_IGNORE="(ls|bg|fg)"
@@ -31,6 +34,38 @@ export LC_ALL=en_US.UTF-8
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+export OKTA_USERNAME=anthony.mcclosky
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command -v pyenv 1> /dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+if command -v pyenv virtualenv 1> /dev/null 2>&1; then
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+export PATH="$PATH:/usr/local/opt/python/libexec/bin"
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/projects
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
+
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
+autoload -Uz compinit && compinit
+
 autoload -Uz promptinit && promptinit
 
 parse_git_dirty () {
@@ -45,10 +80,41 @@ git_prompt() {
  [[ -n $branch ]] && echo "%B%F{240}on%f%b %B%F{141}$branch%f%b"
 }
 
-# PROMPT="\[${BOLD}${MAGENTA}\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
-# PROMPT='%m in %f %(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
 set_prompt () {
   PROMPT="%B%F{red}%m%f%b %B%F{240}in%f%b %B%F{190}%~%f%b $(git_prompt) $prompt_newline%(!.#.$) "
 }
 
+
+# /start .nvmrc - setup auto nvm use
+autoload -U add-zsh-hook
+
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+
+add-zsh-hook chpwd load-nvmrc
+
+load-nvmrc
+
+# /end .nvmrc
+
 precmd_functions+=( set_prompt )
+
+export PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Created by `userpath` on 2020-07-28 19:25:51
+export PATH="$PATH:$HOME/.local/bin"

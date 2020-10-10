@@ -2,29 +2,25 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 
+# Essential Applications
 cask "google-chrome", force: true
-cask "docker"
 cask "visual-studio-code"
-cask "chromedriver"
-cask "sublime-text"
 
-brew "mas"
-mas "Pixelmator", id: 407963104
-
-
+# Shared Libraries
 brew "openssl"
 brew "readline"
 brew "sqlite3"
 brew "xz"
 brew  "zlib"
-
-# Additional recommended dependency for MacOS 10.14+
-# sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
-
 brew "postgresql"
+cask "chromedriver"
+
+# Development Environment
 brew "pyenv"
 brew "pyenv-virtualenv"
-
 brew "git"
 brew "direnv"
+cask "docker"
+
+# Utilities
 brew "httpie"
