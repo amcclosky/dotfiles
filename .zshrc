@@ -32,10 +32,11 @@ source ${DOTROOT}/.alias
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-
 export OKTA_USERNAME=anthony.mcclosky
 
+export PIP_DISABLE_PIP_VERSION_CHECK=1
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export PATH="$PATH:$HOME/.local/bin"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
@@ -84,7 +85,6 @@ set_prompt () {
   PROMPT="%B%F{red}%m%f%b %B%F{240}in%f%b %B%F{190}%~%f%b $(git_prompt) $prompt_newline%(!.#.$) "
 }
 
-
 # /start .nvmrc - setup auto nvm use
 autoload -U add-zsh-hook
 
@@ -114,7 +114,6 @@ load-nvmrc
 
 precmd_functions+=( set_prompt )
 
-export PIP_DISABLE_PIP_VERSION_CHECK=1
-
-# Created by `userpath` on 2020-07-28 19:25:51
-export PATH="$PATH:$HOME/.local/bin"
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc

@@ -4,6 +4,7 @@ tap "homebrew/core"
 
 # Essential Applications
 cask "google-chrome", force: true
+cask "firefox", force: true
 cask "visual-studio-code"
 
 # Shared Libraries
@@ -12,6 +13,7 @@ brew "readline"
 brew "sqlite3"
 brew "xz"
 brew  "zlib"
+
 brew "postgresql"
 cask "chromedriver"
 
