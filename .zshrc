@@ -117,3 +117,5 @@ precmd_functions+=( set_prompt )
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
+
+eval "$(direnv hook zsh)"
