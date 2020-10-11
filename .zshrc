@@ -50,10 +50,7 @@ fi
 
 export PATH="$PATH:/usr/local/opt/python/libexec/bin"
 
-export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/projects
-export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
