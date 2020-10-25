@@ -3,8 +3,6 @@ tap "homebrew/cask"
 tap "homebrew/core"
 
 # Essential Applications
-cask "google-chrome", force: true
-cask "firefox", force: true
 cask "visual-studio-code"
 
 # Shared Libraries
