@@ -19,12 +19,6 @@ alias cleanup_volumes='docker volume rm $(docker volume ls -f dangling=true -q)'
 alias https='http --default-scheme https'
 alias sourcebrc='source ~/.bashrc'
 
-# RDC / Opcity
-alias op-aws='aws --profile=opcity-dev-developer'
-alias op-s3='aws --profile=opcity-dev-developer s3'
-alias op-aws-prod='aws --profile=opcity-prod-developer'
-alias op-s3-prod='aws --profile=opcity-prod-developer s3'
-
 # Git
 alias recent-branches='git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(authordate:short) %(color:red)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))"'
 alias recent-branches-100='git for-each-ref --count=100 --sort=-committerdate refs/heads/ --format="%(authordate:short) %(color:red)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))"'
