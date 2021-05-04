@@ -31,3 +31,6 @@ alias recent-branches-100='git for-each-ref --count=100 --sort=-committerdate re
 
 # Add global git aliases
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+# Tailscale
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
