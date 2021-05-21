@@ -20,23 +20,34 @@ unsetopt CORRECT
 setopt CORRECT_ALL
 unsetopt CORRECT_ALL
 
+# Setup shell history config
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 HISTORY_IGNORE="(ls|bg|fg)"
 SAVEHIST=10000
 HISTSIZE=20000
 
-DOTROOT="${HOME}/.dotfiles"
 
+# Add useful aliases
+DOTROOT="${HOME}/.dotfiles"
 source ${DOTROOT}/.alias
 
+# Setup useful globals
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export OKTA_USERNAME=anthony.mcclosky
+export CODE_HOME=$HOME/code
 
+
+# Setup local bin path (pipx uses this)
+export PATH="$PATH:$HOME/.local/bin"
+
+
+# Preferred Python defaults
 export PIP_DISABLE_PIP_VERSION_CHECK=1
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-export PATH="$PATH:$HOME/.local/bin"
+
+
+# Setup pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
@@ -48,9 +59,8 @@ if command -v pyenv virtualenv 1> /dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
-export PATH="$PATH:/usr/local/opt/python/libexec/bin"
 
-export PROJECT_HOME=$HOME/projects
+# Setup misc autocomplete
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -62,10 +72,12 @@ export NVM_DIR="$HOME/.nvm"
 
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
-autoload -Uz compinit && compinit
 
+autoload -Uz compinit && compinit
 autoload -Uz promptinit && promptinit
 
+
+# Customize shell prompt with git metadata
 parse_git_dirty () {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
@@ -81,6 +93,7 @@ git_prompt() {
 set_prompt () {
   PROMPT="%B%F{red}%m%f%b %B%F{240}in%f%b %B%F{190}%~%f%b $(git_prompt) $prompt_newline%(!.#.$) "
 }
+
 
 # /start .nvmrc - setup auto nvm use
 autoload -U add-zsh-hook
@@ -109,10 +122,13 @@ load-nvmrc
 
 # /end .nvmrc
 
+# Configure pre command hooks
 precmd_functions+=( set_prompt )
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
+
+# Setup direnv
 eval "$(direnv hook zsh)"
