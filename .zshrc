@@ -130,5 +130,11 @@ zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
 
+# PATH customization
+
+# add subl command to the global PATH
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+
+
 # Setup direnv
 eval "$(direnv hook zsh)"
