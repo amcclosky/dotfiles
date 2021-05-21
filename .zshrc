@@ -136,5 +136,9 @@ fpath+=~/.zfunc
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 
 
+# Customize EDITOR
+export EDITOR='subl -w'
+
+
 # Setup direnv
 eval "$(direnv hook zsh)"
