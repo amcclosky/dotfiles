@@ -59,16 +59,14 @@ if command -v pyenv virtualenv 1> /dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
-# Setup misc autocomplete
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
+# Setup homebrew autocomplete
 
 if type brew &>/dev/null; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
+# bootstrap nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -78,6 +76,10 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 
 autoload -Uz compinit && compinit
 autoload -Uz promptinit && promptinit
+autoload -U +X bashcompinit && bashcompinit
+
+# init terraform cli completion
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 
 # Customize shell prompt with git metadata
