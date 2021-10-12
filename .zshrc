@@ -61,6 +61,9 @@ fi
 
 # Setup misc autocomplete
 
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
 if type brew &>/dev/null; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -142,3 +145,12 @@ export EDITOR='code --wait'
 
 # Setup direnv
 eval "$(direnv hook zsh)"
+
+# add Snowflake SnowSQL to macos path
+export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
+
+# add amplify-cli
+export PATH="$HOME/.amplify/bin:$PATH"
+
+# add mysql-client to macos path
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
