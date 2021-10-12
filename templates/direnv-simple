@@ -1,0 +1,6 @@
+export PIP_DISABLE_PIP_VERSION_CHECK=1
+export PYTHONUNBUFFERED=1
+export PYTHONDONTWRITEBYTECODE=1
+
+dotenv_if_exists .env
+dotenv_if_exists .env.local
