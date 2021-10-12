@@ -25,6 +25,14 @@ alias recent-branches-100='git for-each-ref --count=100 --sort=-committerdate re
 
 # Add global git aliases
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.co "checkout"
+git config --global alias.nb "checkout -b"
+
 
 # Tailscale
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
+alias ngrok-config="code --new-window --wait ~/.ngrok2/ngrok.yml"
+alias ngrokconfig="ngrok-config"
+alias edit-hosts="code --new-window --wait /etc/hosts"
+alias edithosts="edit-hosts"
