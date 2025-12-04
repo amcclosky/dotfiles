@@ -42,3 +42,8 @@ alias ngrok-config="code --new-window --wait ~/.ngrok2/ngrok.yml"
 alias ngrokconfig="ngrok-config"
 alias edit-hosts="code --new-window --wait /etc/hosts"
 alias edithosts="edit-hosts"
+
+# fly.io
+alias fly-deploy="fly deploy --remote-only"
+
+alias inv-source="source <(inv --print-completion-script zsh)"

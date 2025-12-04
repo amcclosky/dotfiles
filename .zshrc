@@ -41,6 +41,8 @@ export CODE_HOME=$HOME/code
 # Setup local bin path (pipx uses this)
 export PATH="$PATH:$HOME/.local/bin"
 
+export PATH="$PATH:$HOME/.deno/bin"
+
 
 # Preferred Python defaults
 export PIP_DISABLE_PIP_VERSION_CHECK=1
@@ -48,19 +50,19 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 
 # Setup pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/shims:$PATH"
 
-if command -v pyenv 1> /dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+# if command -v pyenv 1> /dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
 
-if command -v pyenv virtualenv 1> /dev/null 2>&1; then
-  eval "$(pyenv virtualenv-init -)"
-fi
+# if command -v pyenv virtualenv 1> /dev/null 2>&1; then
+#   eval "$(pyenv virtualenv-init -)"
+# fi
 
-# Setup homebrew autocomplete
-
+# Setup homebrew
+export HOMEBREW_NO_ENV_HINTS=1
 if type brew &>/dev/null; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -96,6 +98,7 @@ git_prompt() {
 }
 
 set_prompt () {
+  [[ -z "$HOST" ]] && HOST="ap-main-pro"
   PROMPT="%B%F{red}%m%f%b %B%F{240}in%f%b %B%F{190}%~%f%b $(git_prompt) $prompt_newline%(!.#.$) "
 }
 
@@ -140,13 +143,8 @@ fpath+=~/.zfunc
 # add subl command to the global PATH
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 
-
 # Customize EDITOR
 export EDITOR='code --wait'
-
-
-# Setup direnv
-eval "$(direnv hook zsh)"
 
 # add Snowflake SnowSQL to macos path
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
@@ -156,3 +154,30 @@ export PATH="$HOME/.amplify/bin:$PATH"
 
 # add mysql-client to macos path
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+
+# java stuff
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+
+# Source local settings (not in git)
+[[ -f ${DOTROOT}/.zshrc.local ]] && source ${DOTROOT}/.zshrc.local
+
+# Setup direnv
+eval "$(direnv hook zsh)"
+
+# Setup mise
+eval "$(~/.local/bin/mise activate zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/amcclosky/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# opencode
+export PATH=/Users/amcclosky/.opencode/bin:$PATH
+
+alias claude="/Users/amcclosky/.claude/local/claude"

@@ -149,3 +149,6 @@ dmypy.json
 .pyre/
 
 Brewfile.lock.json
+
+# Local settings (may contain secrets)
+.zshrc.local
