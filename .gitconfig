@@ -1,0 +1,18 @@
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	co = checkout
+	nb = checkout -b
+[user]
+	name = Anthony McClosky
+	email = 143364+amcclosky@users.noreply.github.com
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
+[core]
+	autocrlf = input

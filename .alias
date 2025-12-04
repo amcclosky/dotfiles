@@ -4,9 +4,9 @@
 alias show-hidden='defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder'
 alias hide-hidden='defaults write com.apple.finder AppleShowAllFiles -boolean false ; killall Finder'
 
-alias flushdns='sudo discoveryutil udnsflushcaches'
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
+alias urlencode='python3 -c "import sys; from urllib.parse import quote_plus; print(quote_plus(sys.argv[1]))"'
 alias serve='python3 -m http.server 8080'
 
 # Shell
@@ -27,12 +27,6 @@ alias direnv-init-python="cp -n ~/.dotfiles/templates/direnv-python ./.envrc && 
 # Git
 alias recent-branches='git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(authordate:short) %(color:red)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))"'
 alias recent-branches-100='git for-each-ref --count=100 --sort=-committerdate refs/heads/ --format="%(authordate:short) %(color:red)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))"'
-
-# Add global git aliases
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-git config --global alias.co "checkout"
-git config --global alias.nb "checkout -b"
-
 
 # Tailscale
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"

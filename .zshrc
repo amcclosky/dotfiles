@@ -14,12 +14,6 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt HIST_NO_STORE
 
-setopt CORRECT
-unsetopt CORRECT
-
-setopt CORRECT_ALL
-unsetopt CORRECT_ALL
-
 # Setup shell history config
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 HISTORY_IGNORE="(ls|bg|fg)"
@@ -49,18 +43,6 @@ export PIP_DISABLE_PIP_VERSION_CHECK=1
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 
-# Setup pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/shims:$PATH"
-
-# if command -v pyenv 1> /dev/null 2>&1; then
-#   eval "$(pyenv init -)"
-# fi
-
-# if command -v pyenv virtualenv 1> /dev/null 2>&1; then
-#   eval "$(pyenv virtualenv-init -)"
-# fi
-
 # Setup homebrew
 export HOMEBREW_NO_ENV_HINTS=1
 if type brew &>/dev/null; then
@@ -68,10 +50,17 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
-# bootstrap nvm
+# Lazy load nvm for faster shell startup
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm() {
+  unset -f nvm node npm npx
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
+node() { nvm && node "$@"; }
+npm() { nvm && npm "$@"; }
+npx() { nvm && npx "$@"; }
 
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
@@ -86,7 +75,7 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 # Customize shell prompt with git metadata
 parse_git_dirty () {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+  [[ -n $(git status --porcelain 2>/dev/null) ]] && echo "*"
 }
 parse_git_branch () {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
@@ -103,37 +92,9 @@ set_prompt () {
 }
 
 
-# /start .nvmrc - setup auto nvm use
-autoload -U add-zsh-hook
-
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-
-add-zsh-hook chpwd load-nvmrc
-
-load-nvmrc
-
-# /end .nvmrc
-
 # Configure pre command hooks
 precmd_functions+=( set_prompt )
 
-autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
@@ -170,7 +131,7 @@ eval "$(direnv hook zsh)"
 eval "$(~/.local/bin/mise activate zsh)"
 
 # pnpm
-export PNPM_HOME="/Users/amcclosky/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -178,6 +139,6 @@ esac
 # pnpm end
 
 # opencode
-export PATH=/Users/amcclosky/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
 
-alias claude="/Users/amcclosky/.claude/local/claude"
+alias claude="$HOME/.claude/local/claude --allow-dangerously-skip-permissions"
