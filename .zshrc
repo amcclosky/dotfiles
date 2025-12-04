@@ -141,4 +141,4 @@ esac
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
 
-alias claude="~/.claude/local/claude --allow-dangerously-skip-permissions"
+alias claude="~/.local/bin/claude --allow-dangerously-skip-permissions"
