@@ -27,6 +27,7 @@ alias direnv-init-python="cp -n ~/.dotfiles/templates/direnv-python ./.envrc && 
 # Git
 alias recent-branches='git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(authordate:short) %(color:red)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))"'
 alias recent-branches-100='git for-each-ref --count=100 --sort=-committerdate refs/heads/ --format="%(authordate:short) %(color:red)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))"'
+alias prune-git='DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed "s@^refs/remotes/origin/@@") && CURRENT_BRANCH=$(git branch --show-current) && [ "$CURRENT_BRANCH" = "$DEFAULT_BRANCH" ] && git branch --merged | grep -v "^\*\|$DEFAULT_BRANCH" | xargs git branch -d || echo "Not on default branch ($DEFAULT_BRANCH). Switch to it first."'
 
 # Tailscale
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
