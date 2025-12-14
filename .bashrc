@@ -45,10 +45,6 @@ if [ -f ${DOTROOT}/bin/fancy_prompt.sh ]; then
     source ${DOTROOT}/bin/fancy_prompt.sh
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
-
 eval "$(direnv hook bash)"
 
 source ${DOTROOT}/.alias
