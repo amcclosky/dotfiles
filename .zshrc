@@ -129,4 +129,4 @@ esac
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
 
-alias claude="~/.local/bin/claude --allow-dangerously-skip-permissions"
+alias cc="DEBUG=0 ~/.local/bin/claude --allow-dangerously-skip-permissions"
