@@ -44,4 +44,7 @@ alias gh-login="gh auth login --web --clipboard --git-protocol ssh --skip-ssh-ke
 # fly.io
 alias fly-deploy="fly deploy --remote-only"
 
+# Sprite
+alias sprite-ns="sprite console -s"
+
 alias inv-source="source <(inv --print-completion-script zsh)"
