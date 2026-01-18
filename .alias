@@ -38,6 +38,9 @@ alias ngrokconfig="ngrok-config"
 alias edit-hosts="code --new-window --wait /etc/hosts"
 alias edithosts="edit-hosts"
 
+# GitHub CLI
+alias gh-login="gh auth login --web --clipboard --git-protocol ssh --skip-ssh-key"
+
 # fly.io
 alias fly-deploy="fly deploy --remote-only"
 
