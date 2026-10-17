@@ -1,11 +1,6 @@
-42crunch.vscode-openapi
 anthropic.claude-code
-ashishalex.dataform-lsp-vscode
 astro-build.astro-vscode
 bradlc.vscode-tailwindcss
-google.google-antigravity
-googlecloudtools.datacloud
-hubspot.hubl
 ms-azuretools.vscode-containers
 ms-python.debugpy
 ms-python.python
@@ -16,14 +11,9 @@ ms-toolsai.jupyter-keymap
 ms-toolsai.jupyter-renderers
 ms-toolsai.vscode-jupyter-cell-tags
 ms-toolsai.vscode-jupyter-slideshow
-ms-vscode-remote.remote-containers
-ms-vscode.vscode-claude-sdk
-openai.chatgpt
-openai.codex-audio
 oxc.oxc-vscode
 prefix-dev.pkl-language-support
 redhat.vscode-yaml
-stansw.vscode-odata
 tamasfe.even-better-toml
 typescriptteam.native-preview
 usernamehw.errorlens
