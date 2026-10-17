@@ -39,6 +39,14 @@ Global CLI tools that mise installs itself (node, bun, gcloud, aws, ...) are in
     A file already at a link's path stops the apply; move it aside, or pass
     `--force` to `mise -C ~/.dotfiles dot apply`.
 
+1. Optionally install the Mac App Store apps (Bear, Xcode) too. They're
+   opt-in in `mise.appstore.toml`, and need you signed in to the App Store.
+    ```
+    mise -C ~/.dotfiles -E appstore bootstrap
+    ```
+    `mas` has to be on PATH (`eval "$(/opt/homebrew/bin/brew shellenv)"`). If
+    the apps show as skipped, run it again.
+
 1. Install Solo by hand; it isn't a cask.
 
 1. Put machine-specific settings and secrets in `~/.dotfiles/.zshrc.local`

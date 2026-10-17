@@ -1,0 +1,7 @@
+# Optional: install the Mac App Store apps too with
+# `mise -C ~/.dotfiles -E appstore bootstrap`. Keys are App Store IDs, and
+# mas needs an Apple Account signed in to the App Store.
+[bootstrap.packages]
+"brew:mas" = "latest"
+"mas:1091189122" = "latest" # Bear
+"mas:497799835" = "latest" # Xcode

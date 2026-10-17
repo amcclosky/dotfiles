@@ -42,7 +42,18 @@
 "brew:asimov" = "latest"
 
 # Apps
+"brew-cask:1password" = "latest"
 "brew-cask:1password-cli" = "latest"
+"brew-cask:claude" = "latest"
+"brew-cask:cursor" = "latest"
+"brew-cask:discord" = "latest"
+"brew-cask:google-chrome" = "latest"
+"brew-cask:monologue" = "latest"
+"brew-cask:proxyman" = "latest"
+"brew-cask:raycast" = "latest"
+"brew-cask:slack" = "latest"
+"brew-cask:yaak" = "latest"
+"brew-cask:zed" = "latest"
 "brew-cask:anthropics/tap/ant" = "latest"
 "brew-cask:codex" = "latest"
 "brew-cask:nkzw-tech/tap/codiff" = "latest"
@@ -52,6 +63,8 @@
 "brew-cask:tailscale-app" = "latest"
 "brew-cask:visual-studio-code" = "latest"
 "brew-cask:orbstack" = "latest"
+
+# Mac App Store apps are opt-in: see mise.appstore.toml.
 
 # mise runs the `bootstrap` task last, on every `mise bootstrap`.
 [tasks.bootstrap]
