@@ -5,6 +5,8 @@ Set up a Mac with [mise bootstrap](https://mise.jdx.dev/bootstrap.html).
 
 - `[dotfiles]`: the links into `$HOME`
 - `[bootstrap.packages]`: Homebrew formulae and casks
+- `[bootstrap.macos.*]`: Dock, Finder and other macOS settings. Run
+  `mise -C ~/.dotfiles run restart-ui` (or log out) to see them.
 - `[tasks.bootstrap]`: installs the VS Code extensions in `vscode/extensions.txt`
 
 Global CLI tools that mise installs itself (node, bun, gcloud, aws, ...) are in

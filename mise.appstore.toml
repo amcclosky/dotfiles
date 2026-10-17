@@ -2,6 +2,6 @@
 # `mise -C ~/.dotfiles -E appstore bootstrap`. Keys are App Store IDs, and
 # mas needs an Apple Account signed in to the App Store.
 [bootstrap.packages]
-"brew:mas" = "latest"
-"mas:1091189122" = "latest" # Bear
-"mas:497799835" = "latest" # Xcode
+"brew:mas" = { version = "latest", os = "macos" }
+"mas:1091189122" = { version = "latest", os = "macos" } # Bear
+"mas:497799835" = { version = "latest", os = "macos" } # Xcode

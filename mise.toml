@@ -11,60 +11,88 @@
 # live in mise/config.toml instead.
 [bootstrap.packages]
 # Shell and git
-"brew:git" = "latest"
-"brew:gh" = "latest"
-"brew:hunk" = "latest"
-"brew:lazygit" = "latest"
-"brew:direnv" = "latest"
-"brew:mise" = "latest"
-"brew:tmux" = "latest"
-"brew:coreutils" = "latest"
-"brew:telnet" = "latest"
+"brew:git" = { version = "latest", os = "macos" }
+"brew:gh" = { version = "latest", os = "macos" }
+"brew:hunk" = { version = "latest", os = "macos" }
+"brew:lazygit" = { version = "latest", os = "macos" }
+"brew:direnv" = { version = "latest", os = "macos" }
+"brew:mise" = { version = "latest", os = "macos" }
+"brew:tmux" = { version = "latest", os = "macos" }
+"brew:coreutils" = { version = "latest", os = "macos" }
+"brew:telnet" = { version = "latest", os = "macos" }
 
 # Dev services and runtimes
-"brew:pitchfork" = "latest"
-"brew:overmind" = "latest"
-"brew:postgresql@18" = "latest"
-"brew:mysql-client" = "latest"
-"brew:pyenv" = "latest"
-"brew:pipenv" = "latest"
-"brew:cocoapods" = "latest"
-"brew:fastlane" = "latest"
-"brew:ffmpeg" = "latest"
-"brew:gdal" = "latest"
+"brew:pitchfork" = { version = "latest", os = "macos" }
+"brew:overmind" = { version = "latest", os = "macos" }
+"brew:postgresql@18" = { version = "latest", os = "macos" }
+"brew:mysql-client" = { version = "latest", os = "macos" }
+"brew:pyenv" = { version = "latest", os = "macos" }
+"brew:pipenv" = { version = "latest", os = "macos" }
+"brew:cocoapods" = { version = "latest", os = "macos" }
+"brew:fastlane" = { version = "latest", os = "macos" }
+"brew:ffmpeg" = { version = "latest", os = "macos" }
+"brew:gdal" = { version = "latest", os = "macos" }
 
 # Secrets, networking and cloud
-"brew:doppler" = "latest"
-"brew:lastpass-cli" = "latest"
-"brew:cloudflared" = "latest"
-"brew:tailcat" = "latest"
-"brew:atlassian/acli/acli" = "latest"
-"brew:asimov" = "latest"
+"brew:doppler" = { version = "latest", os = "macos" }
+"brew:lastpass-cli" = { version = "latest", os = "macos" }
+"brew:cloudflared" = { version = "latest", os = "macos" }
+"brew:tailcat" = { version = "latest", os = "macos" }
+"brew:atlassian/acli/acli" = { version = "latest", os = "macos" }
+"brew:asimov" = { version = "latest", os = "macos" }
 
 # Apps
-"brew-cask:1password" = "latest"
-"brew-cask:1password-cli" = "latest"
-"brew-cask:claude" = "latest"
-"brew-cask:cursor" = "latest"
-"brew-cask:discord" = "latest"
-"brew-cask:google-chrome" = "latest"
-"brew-cask:monologue" = "latest"
-"brew-cask:proxyman" = "latest"
-"brew-cask:raycast" = "latest"
-"brew-cask:slack" = "latest"
-"brew-cask:yaak" = "latest"
-"brew-cask:zed" = "latest"
-"brew-cask:anthropics/tap/ant" = "latest"
-"brew-cask:codex" = "latest"
-"brew-cask:nkzw-tech/tap/codiff" = "latest"
-"brew-cask:github" = "latest"
-"brew-cask:humanlayer/humanlayer/humanlayer" = "latest"
-"brew-cask:openlogi" = "latest"
-"brew-cask:tailscale-app" = "latest"
-"brew-cask:visual-studio-code" = "latest"
-"brew-cask:orbstack" = "latest"
+"brew-cask:1password" = { version = "latest", os = "macos" }
+"brew-cask:1password-cli" = { version = "latest", os = "macos" }
+"brew-cask:claude" = { version = "latest", os = "macos" }
+"brew-cask:cursor" = { version = "latest", os = "macos" }
+"brew-cask:discord" = { version = "latest", os = "macos" }
+"brew-cask:google-chrome" = { version = "latest", os = "macos" }
+"brew-cask:monologue" = { version = "latest", os = "macos" }
+"brew-cask:proxyman" = { version = "latest", os = "macos" }
+"brew-cask:raycast" = { version = "latest", os = "macos" }
+"brew-cask:slack" = { version = "latest", os = "macos" }
+"brew-cask:yaak" = { version = "latest", os = "macos" }
+"brew-cask:zed" = { version = "latest", os = "macos" }
+"brew-cask:anthropics/tap/ant" = { version = "latest", os = "macos" }
+"brew-cask:codex" = { version = "latest", os = "macos" }
+"brew-cask:nkzw-tech/tap/codiff" = { version = "latest", os = "macos" }
+"brew-cask:github" = { version = "latest", os = "macos" }
+"brew-cask:humanlayer/humanlayer/humanlayer" = { version = "latest", os = "macos" }
+"brew-cask:openlogi" = { version = "latest", os = "macos" }
+"brew-cask:tailscale-app" = { version = "latest", os = "macos" }
+"brew-cask:visual-studio-code" = { version = "latest", os = "macos" }
+"brew-cask:orbstack" = { version = "latest", os = "macos" }
 
 # Mac App Store apps are opt-in: see mise.appstore.toml.
+
+# macOS settings. mise doesn't restart apps: log out, or run
+# `mise -C ~/.dotfiles run restart-ui`, to see them.
+[bootstrap.macos.dock]
+autohide = true
+orientation = "left"
+show_recents = false
+
+[bootstrap.macos.finder]
+preferred_view_style = "list"
+show_pathbar = true
+
+[bootstrap.macos.defaults]
+# Dock: no bounce when launching apps
+"com.apple.dock" = { launchanim = false }
+# Desktop & Dock: clicking the wallpaper only shows the desktop in Stage
+# Manager; no margins between tiled windows; hide desktop icons
+"com.apple.WindowManager" = { EnableStandardClickToShowDesktop = false, EnableTiledWindowMargins = false, HideDesktop = true }
+# Menu bar: never auto-hide
+"com.apple.controlcenter" = { AutoHideMenuBarOption = 3 }
+# No .DS_Store files on network shares
+"com.apple.desktopservices" = { DSDontWriteNetworkStores = true }
+# Show all file extensions; mouse tracking speed
+NSGlobalDomain = { AppleShowAllExtensions = true, "com.apple.mouse.scaling" = 2.0 }
+
+[tasks.restart-ui]
+description = "Restart Dock, Finder and the menu bar so macOS settings take effect"
+run = "killall Dock Finder SystemUIServer"
 
 # mise runs the `bootstrap` task last, on every `mise bootstrap`.
 [tasks.bootstrap]
