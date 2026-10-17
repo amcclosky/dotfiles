@@ -152,5 +152,6 @@ Brewfile.lock.json
 
 # Local settings (may contain secrets)
 .zshrc.local
+.alias.local
 
 **/.claude/settings.local.json

@@ -36,7 +36,9 @@
     ```
 
 1. Put machine-specific settings and secrets in `~/.dotfiles/.zshrc.local`
-   (gitignored), e.g. OrbStack's init and `RBROWSER_HOST`.
+   (gitignored), e.g. OrbStack's init and `RBROWSER_HOST`. Machine-specific
+   aliases go in `~/.dotfiles/.alias.local` (gitignored), e.g. the
+   `cca`/`ccb`/`ccmc` Claude profile aliases.
 
 ## Notes
 

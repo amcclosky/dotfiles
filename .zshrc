@@ -122,13 +122,7 @@ command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 command -v fnox >/dev/null 2>&1 && eval "$(fnox activate zsh)"
 
 
-alias cc="DEBUG=0 claude --allow-dangerously-skip-permissions"
-
-alias cca="DEBUG=0 ENABLE_CLAUDEAI_MCP_SERVERS=0 CLAUDE_CONFIG_DIR=~/.claude-amcclosky claude --allow-dangerously-skip-permissions"
-
-alias ccb="DEBUG=0 ENABLE_CLAUDEAI_MCP_SERVERS=1 CLAUDE_CONFIG_DIR=~/.claude-backflip claude --allow-dangerously-skip-permissions"
-
-alias ccmc="DEBUG=0 ENABLE_CLAUDEAI_MCP_SERVERS=0 CLAUDE_CONFIG_DIR=~/.claude-mcclosky-dev claude --allow-dangerously-skip-permissions"
+alias cc="claude"
 
 # agent-browser remote connect (set RBROWSER_HOST in .zshrc.local)
 rbrowser() {

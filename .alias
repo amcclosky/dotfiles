@@ -57,3 +57,6 @@ alias solo-cli="/Applications/Solo.app/Contents/MacOS/solo-cli"
 
 # Jira
 alias jira="acli jira"
+
+# Machine-specific aliases (not in git)
+[ -f "${HOME}/.dotfiles/.alias.local" ] && source "${HOME}/.dotfiles/.alias.local"
