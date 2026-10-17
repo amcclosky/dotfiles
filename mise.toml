@@ -19,17 +19,11 @@
 "brew:mise" = { version = "latest", os = "macos" }
 "brew:tmux" = { version = "latest", os = "macos" }
 "brew:coreutils" = { version = "latest", os = "macos" }
-"brew:telnet" = { version = "latest", os = "macos" }
 
 # Dev services and runtimes
 "brew:pitchfork" = { version = "latest", os = "macos" }
-"brew:overmind" = { version = "latest", os = "macos" }
 "brew:postgresql@18" = { version = "latest", os = "macos" }
 "brew:mysql-client" = { version = "latest", os = "macos" }
-"brew:pyenv" = { version = "latest", os = "macos" }
-"brew:pipenv" = { version = "latest", os = "macos" }
-"brew:cocoapods" = { version = "latest", os = "macos" }
-"brew:fastlane" = { version = "latest", os = "macos" }
 "brew:ffmpeg" = { version = "latest", os = "macos" }
 "brew:gdal" = { version = "latest", os = "macos" }
 
@@ -44,7 +38,6 @@
 # Apps
 "brew-cask:1password" = { version = "latest", os = "macos" }
 "brew-cask:1password-cli" = { version = "latest", os = "macos" }
-"brew-cask:claude" = { version = "latest", os = "macos" }
 "brew-cask:cursor" = { version = "latest", os = "macos" }
 "brew-cask:discord" = { version = "latest", os = "macos" }
 "brew-cask:google-chrome" = { version = "latest", os = "macos" }
@@ -55,10 +48,7 @@
 "brew-cask:yaak" = { version = "latest", os = "macos" }
 "brew-cask:zed" = { version = "latest", os = "macos" }
 "brew-cask:anthropics/tap/ant" = { version = "latest", os = "macos" }
-"brew-cask:codex" = { version = "latest", os = "macos" }
-"brew-cask:nkzw-tech/tap/codiff" = { version = "latest", os = "macos" }
 "brew-cask:github" = { version = "latest", os = "macos" }
-"brew-cask:humanlayer/humanlayer/humanlayer" = { version = "latest", os = "macos" }
 "brew-cask:openlogi" = { version = "latest", os = "macos" }
 "brew-cask:tailscale-app" = { version = "latest", os = "macos" }
 "brew-cask:visual-studio-code" = { version = "latest", os = "macos" }
