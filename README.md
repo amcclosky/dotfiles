@@ -47,7 +47,11 @@ Global CLI tools that mise installs itself (node, bun, gcloud, aws, ...) are in
     `mas` has to be on PATH (`eval "$(/opt/homebrew/bin/brew shellenv)"`). If
     the apps show as skipped, run it again.
 
-1. Install Solo by hand; it isn't a cask.
+1. Do these by hand:
+    - [ ] Copy `~/.ssh` from the old Mac (needed for the SSH `origin` above
+      and for cloning other repos)
+    - [ ] Install Rex Beta (no cask), from the [installation docs](https://www.superlogical.com/rex/docs/installation)
+      (needs a Discord login)
 
 1. Put machine-specific settings and secrets in `~/.dotfiles/.zshrc.local`
    (gitignored). Machine-specific aliases go in `~/.dotfiles/.alias.local`
