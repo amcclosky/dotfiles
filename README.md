@@ -18,10 +18,8 @@ Global CLI tools that mise installs itself (node, bun, codex, gcloud, aws,
 
 ## Setup
 
-1. Install [Homebrew](https://brew.sh), then mise
-    ```
-    brew install mise
-    ```
+1. Install [Homebrew](https://brew.sh) (the packages are Homebrew formulae and
+   casks).
 
 1. Clone `dotfiles` (public, so HTTPS needs no credentials)
     ```
@@ -43,9 +41,13 @@ Global CLI tools that mise installs itself (node, bun, codex, gcloud, aws,
    global mise tools (including Codex) and Claude Code, clones the `~/code`
    repos, and installs the VS Code extensions. Preview it with `--dry-run`.
     ```
-    mise trust ~/.dotfiles
-    mise -C ~/.dotfiles bootstrap
+    ~/.dotfiles/bin/mise trust ~/.dotfiles
+    ~/.dotfiles/bin/mise -C ~/.dotfiles bootstrap
     ```
+    `bin/mise` downloads a pinned mise on first run, so mise doesn't need to be
+    installed yet. Bootstrap installs mise from Homebrew (`brew:mise`); open a
+    new terminal afterwards and use plain `mise` from then on.
+
     | Repo file | Linked as |
     | --- | --- |
     | `.zshrc` | `~/.zshrc` |
@@ -84,6 +86,8 @@ Global CLI tools that mise installs itself (node, bun, codex, gcloud, aws,
 - Installers often append to `~/.zshrc`, which is a link into this public
   repo. Check `git -C ~/.dotfiles diff` after running one, and move anything
   machine-specific into `.zshrc.local`.
+- Update the mise version that `bin/mise` pins:
+  `mise generate install-script --write ~/.dotfiles/bin/mise`.
 
 ## Notes
 
