@@ -7,10 +7,14 @@ Set up a Mac with [mise bootstrap](https://mise.jdx.dev/bootstrap.html).
 - `[bootstrap.packages]`: Homebrew formulae and casks
 - `[bootstrap.macos.*]`: Dock, Finder and other macOS settings. Run
   `mise -C ~/.dotfiles run restart-ui` (or log out) to see them.
-- `[tasks.bootstrap]`: installs the VS Code extensions in `vscode/extensions.txt`
+- `[tasks.bootstrap]`: runs `install-claude` (the Claude Code native
+  installer, skipped if `~/.local/bin/claude` exists) and `clone-repos`, then
+  installs the VS Code extensions in `vscode/extensions.txt`
+- `fnox.toml`: `CODE_REPOS`, the repos `clone-repos` clones into `~/code`.
+  It's age-encrypted to `~/.ssh/id_ed25519`, since this repo is public.
 
-Global CLI tools that mise installs itself (node, bun, gcloud, aws, ...) are in
-`mise/config.toml`, which is linked as the global mise config.
+Global CLI tools that mise installs itself (node, bun, codex, gcloud, aws,
+...) are in `mise/config.toml`, which is linked as the global mise config.
 
 ## Setup
 
@@ -25,8 +29,19 @@ Global CLI tools that mise installs itself (node, bun, gcloud, aws, ...) are in
     git -C ~/.dotfiles remote set-url origin git@github.com:amcclosky/dotfiles.git
     ```
 
+1. Copy `~/.ssh` and the `~/.config/fnox/*.txt` age keys from the old Mac.
+    - `~/.ssh`: bootstrap needs it to decrypt the repo list and clone the
+      repos; without it, `clone-repos` skips them (run
+      `mise -C ~/.dotfiles run clone-repos` later).
+    - `~/.config/fnox/age.txt`: the age key that fnox uses to decrypt
+      secrets in projects whose `fnox.toml` is encrypted to it.
+    - `~/.config/fnox/amp-orb-age.txt`: a second age key.
+
+    Keep the age keys `chmod 600`.
+
 1. Bootstrap. This installs the packages, links the dotfiles, installs the
-   global mise tools and the VS Code extensions. Preview it with `--dry-run`.
+   global mise tools (including Codex) and Claude Code, clones the `~/code`
+   repos, and installs the VS Code extensions. Preview it with `--dry-run`.
     ```
     mise trust ~/.dotfiles
     mise -C ~/.dotfiles bootstrap
@@ -50,8 +65,6 @@ Global CLI tools that mise installs itself (node, bun, gcloud, aws, ...) are in
     the apps show as skipped, run it again.
 
 1. Do these by hand:
-    - [ ] Copy `~/.ssh` from the old Mac (needed for the SSH `origin` above
-      and for cloning other repos)
     - [ ] Install Rex Beta (no cask), from the [installation docs](https://www.superlogical.com/rex/docs/installation)
       (needs a Discord login)
 
@@ -66,6 +79,8 @@ Global CLI tools that mise installs itself (node, bun, gcloud, aws, ...) are in
   differs.
 - Add a global tool: `mise use -g <tool>@<version>` (writes `mise/config.toml`).
 - Add a VS Code extension: append its id to `vscode/extensions.txt`.
+- Change the repo list: `fnox get CODE_REPOS > list`, edit it, then
+  `cat list | fnox set CODE_REPOS -p age` (from `~/.dotfiles`).
 - Installers often append to `~/.zshrc`, which is a link into this public
   repo. Check `git -C ~/.dotfiles diff` after running one, and move anything
   machine-specific into `.zshrc.local`.

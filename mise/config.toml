@@ -2,13 +2,14 @@
 actionlint = "latest"
 aws = { version = "latest", symlink_bins = "true" }
 bun = "latest"
+codex = "latest"
 fnox = "latest"
 gcloud = { version = "latest", postinstall = "\"$MISE_TOOL_INSTALL_PATH/bin/gcloud\" components install beta --quiet" }
 herdr = "latest"
 node = "24.13.0"
 "npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:@hubspot/cli" = "latest"
-"npm:cf" = "1.0.0-beta.13"
+"npm:cf" = "1.0.0-beta.18"
 "pipx:modal" = "latest"
 
 [settings]

@@ -84,9 +84,31 @@ NSGlobalDomain = { AppleShowAllExtensions = true, "com.apple.mouse.scaling" = 2.
 description = "Restart Dock, Finder and the menu bar so macOS settings take effect"
 run = "killall Dock Finder SystemUIServer"
 
+# Claude Code's native installer puts it in ~/.local/bin and keeps it updated.
+[tasks.install-claude]
+description = "Install the Claude Code CLI with its native installer"
+run = '''
+[ -x ~/.local/bin/claude ] && { echo "claude already installed"; exit 0; }
+curl -fsSL https://claude.ai/install.sh | bash
+'''
+
+# The repo list is age-encrypted in fnox.toml, so this needs ~/.ssh copied over.
+[tasks.clone-repos]
+description = "Clone the repos in fnox.toml's CODE_REPOS into ~/code"
+run = '''
+[ -f ~/.ssh/id_ed25519 ] || { echo "No ~/.ssh/id_ed25519 yet, skipping repos"; exit 0; }
+mkdir -p ~/code
+fnox get CODE_REPOS | while read -r dir url; do
+  [ -n "$dir" ] || continue
+  if [ -d ~/code/"$dir" ]; then echo "~/code/$dir exists"; continue; fi
+  GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new" git clone "$url" ~/code/"$dir" </dev/null
+done
+'''
+
 # mise runs the `bootstrap` task last, on every `mise bootstrap`.
 [tasks.bootstrap]
-description = "Install the VS Code extensions in vscode/extensions.txt"
+description = "Install the Claude Code CLI, clone the ~/code repos and install the VS Code extensions"
+depends = ["install-claude", "clone-repos"]
 run = '''
 code="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
 [ -x "$code" ] || { echo "VS Code not installed, skipping extensions"; exit 0; }

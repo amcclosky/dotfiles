@@ -1,0 +1,10 @@
+# Encrypted to the SSH key, so copying ~/.ssh is enough to decrypt it.
+# CODE_REPOS: the ~/code checkouts, one "<dir> <git url>" per line. Edit with
+# `fnox get CODE_REPOS > list`, then `cat list | fnox set CODE_REPOS -p age`.
+[providers.age]
+type = "age"
+key_file = "~/.ssh/id_ed25519"
+recipients = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBh2ylJPqTG1mn3awAenfPDZ9jd9G1TTE0GwpXHOD+17"]
+
+[secrets]
+CODE_REPOS= { provider = "age", value = "YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IHNzaC1lZDI1NTE5IE9aWEVIZyB0SWxEUGE4bUxjUUN1YWFrbTlrRkJZdmJwU3BDODZ0b2dXRjFZQUtXVDJnCmV1YlZuNC9sRnBJcmxlbkhzWGIwTnEyWnZuNks0UWVLQllkRnB3OGdaYkkKLT4gdC1ncmVhc2UgKkMgWEVaCitXYzluNXJFM3pXZkxNeVBZZnhXVVlYWHpoQ1RiaTQKLS0tIHZIT3d3OExBcmYzZkhHOHhzTkZvMXJkeDQ0aEdjcENJTFhlMytwQnhsQ00KI6ibwFYqdNaxG+uN+J8VWia56D+1h2rI1YNpLb9ktCNVKM37phfC0fOByC+xspM8mfYHdiNhOAogOHTdvwJZlenlMc2gF8TxTYNpRU6KCFh7TaoB696i05+3n6txc6ceKn4aEKON3lGFFhbCO0bYM01GRQ+S0y0NPdtyAEBOyANCndug1EdEzr6Yn3LUntJchh5Wx7NMX2n/qfT5tTAok07IHMsNP+BbEGKaTX9FMhZ4pQIWLr3/oob25NgdqvecKwps2owvVrTvfTylqlF9KjqEpAf6pu/fNqvRcd0Z9IJsW39tzsyaRUbbESyvZNX66oisCGiN0kox9VMk+DLrMEAlZwCjPFH1lZ2MLjqtGTn9ak7Vdp+fynDrvPC9N+H4id8VVR9PYzj3ROa6Bzcxhx1p6oDNrkJkVPsBhFqmaJ/1B+7A3XaM/zU8j4d8sGy8Wp6I6AlHzEGR98AdDqBsH442RTaNWFd7eArC2ygHervNMhi8jlO5YxE6TAEpp603r0wNepoK9R+XgYLeFG/5PdpoKSrbQtjf0dNfM80FY7dz3m61ncdIq11YnttbW+PUshBhrqTQKpSlNst8981KL4zNZ75CLqeIquKEzy2s8h8xhMrkwis5QEFMxuCIUN5wWCerCCIrYq1mDnTHmx4DxhmSta2pl0l75DbIIcrrTNtUKC4d4Gm2bqGgusYD7UgNM49hOHkpXtM1YCl/ejQKTBVP3Y68VqRdYUg71g21/ekgs/1iAihGGVMR8+pAjra0x+uyRnhXkDFNcky87hwamGQS/MJ89XKcmUE9G7FqYaJc8v8PnolUYLYpsB+LKX8IEa9J01VM5+MGA/+tCoq+OTssdJ/rAVo5aUJA/41rgrg=" }
