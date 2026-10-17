@@ -1,27 +1,33 @@
 # dotfiles
 
+Set up a Mac with [mise bootstrap](https://mise.jdx.dev/bootstrap.html).
+`mise.toml` declares everything:
+
+- `[dotfiles]`: the links into `$HOME`
+- `[bootstrap.packages]`: Homebrew formulae and casks
+- `[tasks.bootstrap]`: installs the VS Code extensions in `vscode/extensions.txt`
+
+Global CLI tools that mise installs itself (node, bun, gcloud, aws, ...) are in
+`mise/config.toml`, which is linked as the global mise config.
+
 ## Setup
 
-1. Install [Homebrew](https://brew.sh), then the GitHub CLI
+1. Install [Homebrew](https://brew.sh), then mise
     ```
-    brew install gh
-    gh auth login
-    ```
-
-1. Clone `dotfiles`
-    ```
-    gh repo clone amcclosky/dotfiles ~/.dotfiles
+    brew install mise
     ```
 
-1. Install packages, casks and VS Code extensions
+1. Clone `dotfiles` (public, so HTTPS needs no credentials)
     ```
-    cd ~/.dotfiles && brew bundle install
+    git clone https://github.com/amcclosky/dotfiles ~/.dotfiles
+    git -C ~/.dotfiles remote set-url origin git@github.com:amcclosky/dotfiles.git
     ```
-    Solo isn't a cask; install it by hand.
 
-1. Link the dotfiles into `$HOME` (moves any existing file to `<file>.bak`)
+1. Bootstrap. This installs the packages, links the dotfiles, installs the
+   global mise tools and the VS Code extensions. Preview it with `--dry-run`.
     ```
-    ~/.dotfiles/install.sh
+    mise trust ~/.dotfiles
+    mise -C ~/.dotfiles bootstrap
     ```
     | Repo file | Linked as |
     | --- | --- |
@@ -30,21 +36,27 @@
     | `.gitignore` | `~/.gitignore_global` |
     | `mise/config.toml` | `~/.config/mise/config.toml` |
 
-1. Install the global mise tools (node, bun, gcloud, aws, ...)
-    ```
-    mise install
-    ```
+    A file already at a link's path stops the apply; move it aside, or pass
+    `--force` to `mise -C ~/.dotfiles dot apply`.
+
+1. Install Solo by hand; it isn't a cask.
 
 1. Put machine-specific settings and secrets in `~/.dotfiles/.zshrc.local`
-   (gitignored). Machine-specific
-   aliases go in `~/.dotfiles/.alias.local` (gitignored), e.g. the
-   `cca`/`ccb`/`ccmc` Claude profile aliases.
+   (gitignored). Machine-specific aliases go in `~/.dotfiles/.alias.local`
+   (gitignored), e.g. the `cca`/`ccb`/`ccmc` Claude profile aliases.
 
-## Notes
+## Keeping it up to date
 
+- Add a package: `mise -C ~/.dotfiles bootstrap packages use brew:<name>`, or
+  edit `mise.toml`. `mise -C ~/.dotfiles bootstrap packages status` shows what
+  differs.
+- Add a global tool: `mise use -g <tool>@<version>` (writes `mise/config.toml`).
+- Add a VS Code extension: append its id to `vscode/extensions.txt`.
 - Installers often append to `~/.zshrc`, which is a link into this public
   repo. Check `git -C ~/.dotfiles diff` after running one, and move anything
   machine-specific into `.zshrc.local`.
-- `.bashrc`, `.bash_profile` and `vscode/` are legacy bash config; nothing
-  links them by default.
-- Refresh the Brewfile with `brew bundle dump --force --file=~/.dotfiles/Brewfile`.
+
+## Notes
+
+- `.bashrc`, `.bash_profile` and `vscode/install.sh` are legacy bash config;
+  nothing links them by default.

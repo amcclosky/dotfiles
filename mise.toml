@@ -1,0 +1,66 @@
+# Set up a Mac with `mise -C ~/.dotfiles bootstrap`. See README.md.
+
+# Links into $HOME. Sources resolve from this directory.
+[dotfiles]
+"~/.zshrc" = { source = ".zshrc" }
+"~/.gitconfig" = { source = ".gitconfig" }
+"~/.gitignore_global" = { source = ".gitignore" }
+"~/.config/mise/config.toml" = { source = "mise/config.toml" }
+
+# Homebrew formulae and casks. Global CLI tools that mise can install itself
+# live in mise/config.toml instead.
+[bootstrap.packages]
+# Shell and git
+"brew:git" = "latest"
+"brew:gh" = "latest"
+"brew:hunk" = "latest"
+"brew:lazygit" = "latest"
+"brew:direnv" = "latest"
+"brew:mise" = "latest"
+"brew:tmux" = "latest"
+"brew:coreutils" = "latest"
+"brew:telnet" = "latest"
+
+# Dev services and runtimes
+"brew:pitchfork" = "latest"
+"brew:overmind" = "latest"
+"brew:postgresql@18" = "latest"
+"brew:mysql-client" = "latest"
+"brew:pyenv" = "latest"
+"brew:pipenv" = "latest"
+"brew:cocoapods" = "latest"
+"brew:fastlane" = "latest"
+"brew:ffmpeg" = "latest"
+"brew:gdal" = "latest"
+
+# Secrets, networking and cloud
+"brew:doppler" = "latest"
+"brew:lastpass-cli" = "latest"
+"brew:cloudflared" = "latest"
+"brew:tailcat" = "latest"
+"brew:atlassian/acli/acli" = "latest"
+"brew:asimov" = "latest"
+
+# Apps
+"brew-cask:1password-cli" = "latest"
+"brew-cask:anthropics/tap/ant" = "latest"
+"brew-cask:codex" = "latest"
+"brew-cask:nkzw-tech/tap/codiff" = "latest"
+"brew-cask:github" = "latest"
+"brew-cask:humanlayer/humanlayer/humanlayer" = "latest"
+"brew-cask:openlogi" = "latest"
+"brew-cask:tailscale-app" = "latest"
+"brew-cask:visual-studio-code" = "latest"
+"brew-cask:orbstack" = "latest"
+
+# mise runs the `bootstrap` task last, on every `mise bootstrap`.
+[tasks.bootstrap]
+description = "Install the VS Code extensions in vscode/extensions.txt"
+run = '''
+code="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+[ -x "$code" ] || { echo "VS Code not installed, skipping extensions"; exit 0; }
+installed=$("$code" --list-extensions | tr '[:upper:]' '[:lower:]')
+while read -r ext; do
+  echo "$installed" | grep -qx "$(echo "$ext" | tr '[:upper:]' '[:lower:]')" || "$code" --install-extension "$ext"
+done < vscode/extensions.txt
+'''

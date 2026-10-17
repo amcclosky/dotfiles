@@ -121,9 +121,6 @@ source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 # Setup direnv
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
-# Setup fnox
-command -v fnox >/dev/null 2>&1 && eval "$(fnox activate zsh)"
-
 
 alias cc="claude"
 
@@ -131,6 +128,8 @@ alias cc="claude"
 # Setup mise (keep last so its tool paths stay ahead of every PATH change above)
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
+  # fnox comes from mise (mise/config.toml), so it has to wait for activation
+  command -v fnox >/dev/null 2>&1 && eval "$(fnox activate zsh)"
   # terraform comes from mise, so its completion has to wait for activation
   command -v terraform >/dev/null 2>&1 && complete -o nospace -C "$(command -v terraform)" terraform
   command -v wt >/dev/null 2>&1 && eval "$(command wt config shell init zsh 2>/dev/null)"
