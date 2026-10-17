@@ -115,6 +115,9 @@ export PATH="$HOME/.hubspot/bin:$PATH"
 # Source local settings (not in git)
 [[ -f ${DOTROOT}/.zshrc.local ]] && source ${DOTROOT}/.zshrc.local
 
+# OrbStack: command-line tools and integration
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+
 # Setup direnv
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
@@ -123,13 +126,6 @@ command -v fnox >/dev/null 2>&1 && eval "$(fnox activate zsh)"
 
 
 alias cc="claude"
-
-# agent-browser remote connect (set RBROWSER_HOST in .zshrc.local)
-rbrowser() {
-  local host=${RBROWSER_HOST:?set RBROWSER_HOST in ~/.dotfiles/.zshrc.local}
-  local ws_url=$(curl -s http://$host:9222/json/version | jq -r .webSocketDebuggerUrl | sed "s|ws://[^:/]*|ws://$host|")
-  npx agent-browser connect "$ws_url"
-}
 
 
 # Setup mise (keep last so its tool paths stay ahead of every PATH change above)
