@@ -16,3 +16,9 @@
 	ignoreRevsFile = .git-blame-ignore-revs
 [core]
 	autocrlf = input
+	excludesfile = ~/.gitignore_global
+	pager = hunk pager
+[rerere]
+	enabled = true
+[remote]
+	pushDefault = origin

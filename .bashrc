@@ -24,7 +24,6 @@ export PATH="${DOTROOT}/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="${HOME}/.poetry/bin:$PATH"
 
-source ${DOTROOT}/.compiler_flags
 
 if command -v pyenv 1> /dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -48,4 +47,3 @@ fi
 eval "$(direnv hook bash)"
 
 source ${DOTROOT}/.alias
-source ${DOTROOT}/.dockeralias
