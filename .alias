@@ -58,5 +58,14 @@ alias solo-cli="/Applications/Solo.app/Contents/MacOS/solo-cli"
 # Jira
 alias jira="acli jira"
 
+# Power: toggle all sleep, including lid-close sleep (needs sudo)
+sleep-toggle() {
+  if [ "$(pmset -g | awk '/SleepDisabled/ {print $2}')" = "1" ]; then
+    sudo pmset -a disablesleep 0 && echo "sleep enabled"
+  else
+    sudo pmset -a disablesleep 1 && echo "sleep disabled"
+  fi
+}
+
 # Machine-specific aliases (not in git)
 [ -f "${HOME}/.dotfiles/.alias.local" ] && source "${HOME}/.dotfiles/.alias.local"
