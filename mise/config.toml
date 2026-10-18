@@ -12,6 +12,7 @@ uv = "latest"
 "npm:@hubspot/cli" = "latest"
 "npm:cf" = "1.0.0-beta.18"
 "pipx:modal" = "latest"
+"npm:@sentry/dotagents" = "latest"
 
 [settings]
 trusted_config_paths = ["~/code/backflip-dw"]
