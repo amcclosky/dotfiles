@@ -48,7 +48,7 @@
     "amcclosky": {
       "source": {
         "source": "directory",
-        "path": "/Users/amcclosky/code/skills"
+        "path": "~/code/skills"
       }
     }
   },
