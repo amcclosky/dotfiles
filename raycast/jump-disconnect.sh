@@ -11,7 +11,7 @@
 # @raycast.argument1 { "type": "text", "placeholder": "computer (blank = all sessions)", "optional": true }
 
 # Jump has no AppleScript dictionary, so this closes session windows via System Events
-# (File > Close Window on the raised session window).
+# (File > Close Window on the raised session window), then restores the previous frontmost app.
 # Raycast needs Accessibility permission (System Settings > Privacy & Security > Accessibility).
 # Session windows are titled with the computer's name; the library window is "Jump Desktop".
 
@@ -23,6 +23,7 @@ on run argv
   set closed to {}
   tell application "System Events"
     if not (exists process "Jump Desktop") then return "Jump isn't running"
+    set prevApp to first application process whose frontmost is true
     tell process "Jump Desktop"
       repeat with w in (reverse of (get windows))
         set t to name of w
@@ -39,6 +40,10 @@ on run argv
         end if
       end repeat
     end tell
+    -- Closing raises Jump, so hand focus back to whatever was in front before.
+    if not dryRun and (count of closed) > 0 and name of prevApp is not "Jump Desktop" then
+      set frontmost of prevApp to true
+    end if
   end tell
   if (count of closed) is 0 then return "No matching session"
   set AppleScript's text item delimiters to ", "
