@@ -7,6 +7,7 @@
 "~/.gitignore_global" = { source = ".gitignore" }
 "~/.config/mise/config.toml" = { source = "mise/config.toml" }
 "~/.claude/statusline.sh" = { source = "claude/statusline.sh" }
+"~/.claude/settings.json" = { source = "claude/settings.json" }
 
 # Homebrew formulae and casks. Global CLI tools that mise can install itself
 # live in mise/config.toml instead.

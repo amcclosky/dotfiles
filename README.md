@@ -54,6 +54,8 @@ Global CLI tools that mise installs itself (node, bun, codex, gcloud, aws,
     | `.gitconfig` | `~/.gitconfig` |
     | `.gitignore` | `~/.gitignore_global` |
     | `mise/config.toml` | `~/.config/mise/config.toml` |
+    | `claude/statusline.sh` | `~/.claude/statusline.sh` |
+    | `claude/settings.json` | `~/.claude/settings.json` |
 
     A file already at a link's path stops the apply; move it aside, or pass
     `--force` to `mise -C ~/.dotfiles dot apply`.
