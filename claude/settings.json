@@ -28,13 +28,27 @@
   "enabledPlugins": {
     "code-simplifier@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
-    "pstack@cursor-plugins": true
+    "pstack@cursor-plugins": true,
+    "agent-browser@agent-browser": true,
+    "local-browse@amcclosky": true
   },
   "extraKnownMarketplaces": {
     "cursor-plugins": {
       "source": {
         "source": "github",
         "repo": "cursor/plugins"
+      }
+    },
+    "agent-browser": {
+      "source": {
+        "source": "github",
+        "repo": "vercel-labs/agent-browser"
+      }
+    },
+    "amcclosky": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/amcclosky/code/skills"
       }
     }
   },
