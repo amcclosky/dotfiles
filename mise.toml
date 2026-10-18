@@ -8,6 +8,9 @@
 "~/.config/mise/config.toml" = { source = "mise/config.toml" }
 "~/.claude/statusline.sh" = { source = "claude/statusline.sh" }
 "~/.claude/settings.json" = { source = "claude/settings.json" }
+"~/.config/raycast/scripts/jump-connect.sh" = { source = "raycast/jump-connect.sh" }
+"~/.config/raycast/scripts/jump-disconnect.sh" = { source = "raycast/jump-disconnect.sh" }
+"~/.config/raycast/scripts/jump-sync.sh" = { source = "raycast/jump-sync.sh" }
 
 # Homebrew formulae and casks. Global CLI tools that mise can install itself
 # live in mise/config.toml instead.
