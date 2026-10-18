@@ -1,5 +1,6 @@
 [tools]
 actionlint = "latest"
+agent-browser = "latest"
 aws = { version = "latest", symlink_bins = "true" }
 bun = "latest"
 codex = "latest"
@@ -10,9 +11,9 @@ node = "24.13.0"
 uv = "latest"
 "npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:@hubspot/cli" = "latest"
+"npm:@sentry/dotagents" = "latest"
 "npm:cf" = "1.0.0-beta.18"
 "pipx:modal" = "latest"
-"npm:@sentry/dotagents" = "latest"
 
 [settings]
 trusted_config_paths = ["~/code/backflip-dw"]
